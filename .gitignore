@@ -12,3 +12,4 @@ venv/
 # local-only files
 *.zip
 data/
+logs/
