@@ -19,6 +19,7 @@ def log_request(
     latency_s: float | None,
     image_name: str | None = None,
     image_kb: float | None = None,
+    image_px: str | None = None,
     error: str | None = None,
 ) -> None:
     if not config.REQUEST_LOG_PATH:
@@ -31,6 +32,7 @@ def log_request(
         "latency_s": latency_s,
         "image_name": image_name,
         "image_kb": image_kb,
+        "image_px": image_px,
         "error": error,
     }
     try:

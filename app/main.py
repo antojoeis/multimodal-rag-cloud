@@ -9,6 +9,7 @@ from pydantic import BaseModel
 
 from app import config
 from app.llm.base import VLMBackend
+from app.image_utils import InvalidImageError, prepare_image
 from app.llm.ollama_vlm import OllamaVLM
 from app.request_log import log_request
 
@@ -42,21 +43,27 @@ async def ask(
     backend: VLMBackend = Depends(get_backend),
 ):
     images: list[bytes] = []
-    image_name = image_kb = None
+    image_name = image_kb = image_px = None
     if image is not None and image.filename:
         if image.content_type not in ALLOWED_TYPES:
             raise HTTPException(415, f"Unsupported image type: {image.content_type}")
         data = await image.read()
         if len(data) > config.MAX_IMAGE_MB * 1024 * 1024:
             raise HTTPException(413, f"Image larger than {config.MAX_IMAGE_MB} MB")
-        images.append(data)
+        try:
+            prepared = prepare_image(data, config.MAX_IMAGE_SIDE_PX)
+        except InvalidImageError as exc:
+            raise HTTPException(400, str(exc)) from exc
+        images.append(prepared.data)
         image_name, image_kb = image.filename, round(len(data) / 1024, 1)
+        (ow, oh), (sw, sh) = prepared.original_size, prepared.sent_size
+        image_px = f"{ow}x{oh}->{sw}x{sh}" if prepared.resized else f"{ow}x{oh}"
 
     try:
         result = await backend.ask(question, images)
     except httpx.HTTPError as exc:
-        log_request(question, None, config.VLM_MODEL, None, image_name, image_kb, error=str(exc))
+        log_request(question, None, config.VLM_MODEL, None, image_name, image_kb, image_px, error=str(exc))
         raise HTTPException(502, f"LLM backend error: {exc}") from exc
 
-    log_request(question, result.text, result.model, result.latency_s, image_name, image_kb)
+    log_request(question, result.text, result.model, result.latency_s, image_name, image_kb, image_px)
     return AskResponse(answer=result.text, model=result.model, latency_s=result.latency_s)

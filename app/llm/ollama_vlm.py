@@ -17,6 +17,7 @@ class OllamaVLM(VLMBackend):
         payload = {
             "model": self.model,
             "stream": False,
+            "options": {"num_ctx": config.OLLAMA_NUM_CTX},
             "messages": [
                 {
                     "role": "user",

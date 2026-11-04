@@ -1,9 +1,11 @@
 """API tests with a fake backend, so they run without Ollama or a GPU."""
+import io
 import json
 
 import httpx
 import pytest
 from fastapi.testclient import TestClient
+from PIL import Image
 
 from app import config
 from app.llm.base import VLMAnswer, VLMBackend
@@ -42,10 +44,13 @@ def read_log(path):
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
 
 
-PNG_1PX = bytes.fromhex(
-    "89504e470d0a1a0a0000000d4948445200000001000000010806000000"
-    "1f15c4890000000d49444154789c6360000002000154a24f5d0000000049454e44ae426082"
-)
+def _tiny_png() -> bytes:
+    buf = io.BytesIO()
+    Image.new("RGB", (1, 1), "white").save(buf, format="PNG")
+    return buf.getvalue()
+
+
+PNG_1PX = _tiny_png()
 
 
 def test_health():
@@ -113,3 +118,27 @@ def test_logging_can_be_disabled(request_log, monkeypatch):
     monkeypatch.setattr(config, "REQUEST_LOG_PATH", "")
     client.post("/ask", data={"question": "hello"})
     assert not request_log.exists()
+
+
+def test_large_image_is_resized_before_the_model(request_log):
+    buf = io.BytesIO()
+    Image.new("RGB", (4032, 3024), "blue").save(buf, format="JPEG")
+    r = client.post(
+        "/ask",
+        data={"question": "what color?"},
+        files={"image": ("photo.jpg", buf.getvalue(), "image/jpeg")},
+    )
+    assert r.status_code == 200
+    [sent] = fake.last_images
+    assert Image.open(io.BytesIO(sent)).size == (1024, 768)
+    [record] = read_log(request_log)
+    assert record["image_px"] == "4032x3024->1024x768"
+
+
+def test_corrupt_image_returns_400():
+    r = client.post(
+        "/ask",
+        data={"question": "?"},
+        files={"image": ("broken.jpg", b"not really a jpeg", "image/jpeg")},
+    )
+    assert r.status_code == 400
