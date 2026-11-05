@@ -2,138 +2,119 @@
 
 ![CI](https://github.com/antojoeis/multimodal-rag-cloud/actions/workflows/ci.yml/badge.svg)
 
-Ask questions about images and documents together. Upload a PDF, a screenshot,
-or a photo of a device, and get grounded answers from a vision-language model.
-It runs locally on a GPU with Ollama today; the cloud version (AWS, Terraform,
-CI/CD) is being built week by week.
+Ask questions about images of hardware (boards, connectors, test screens, logs) and get answers from a vision-language model (VLM). The goal is a multimodal RAG system deployed on AWS, with a measured comparison of a **self-hosted** model (Ollama on a GPU) against a **managed** one (Amazon Bedrock).
 
-**Why this project:** I've built on-premise LLM pipelines in production (Ollama +
-GPU edge servers for hardware-test automation). This repo applies the same
-skills to vision-language models, evaluates them honestly on real hardware
-images, and then moves them to the cloud with a measured comparison of cost,
-latency and quality between self-hosted and managed inference.
+> **Why this project:** I've built on-premise LLM pipelines in production (Ollama + GPU edge servers). This repo shows the same skills on the cloud, with numbers for cost, latency and quality.
 
-## Status
+## Current status
 
-| Part | State |
+| Part | Status |
 |---|---|
-| FastAPI service: upload an image, ask a question, get an answer (`/ask`, `/health`) | Done |
-| Self-hosted VLM backend (Qwen2.5-VL via Ollama), image resizing, request logging | Done |
-| Evaluation: 28-question test set on 12 hardware images, automated runner, graded results | Done ([results](eval/WEEK2_RESULTS.md)) |
-| Unit tests, Dockerfile, Docker Compose, GitHub Actions CI | Done |
-| Multimodal RAG: pgvector, CLIP image embeddings, PDF ingestion, citations | Next (Week 3) |
-| Managed backend (Amazon Bedrock), S3, Terraform, deploy pipeline | Planned (Weeks 5–7) |
-| Self-hosted vs. managed benchmark | Planned (Week 8) |
+| FastAPI service: upload an image and ask a question | ✅ Done |
+| Self-hosted VLM: `qwen2.5vl:3b` on Ollama, GTX 1660 6 GB | ✅ Done |
+| Image resizing (≤1024 px) and an 8K context window to prevent truncated, garbage answers | ✅ Done |
+| Request logging (JSONL) and a latency report | ✅ Done |
+| Evaluation: 11 public images, 28 questions with an answer key | ✅ Done |
+| Unit tests (pytest, 15 tests, no GPU needed) | ✅ Done |
+| Dockerfile, Docker Compose (API + Ollama), GitHub Actions CI (tests + image build) | ✅ Done |
+| RAG: embeddings, vector DB, citations | ⏳ Week 3 |
+| AWS: Bedrock, S3, Terraform, CI/CD | ⏳ Weeks 4–7 |
 
-## First results (Week 2)
+## First results (Week 2 baseline, `qwen2.5vl:3b`)
 
-`qwen2.5vl:3b` on a GTX 1660 (6 GB), 28 questions about PCB photos, connectors,
-oscilloscope screens and test reports:
-
-| Metric | Result |
+| Question type | Correct |
 |---|---|
-| Correct | 12 / 28 (43%) |
-| Correct or partly correct | 19 / 28 (68%) |
-| Hallucinations on false-premise ("trick") questions | 2 of 4, plus 1 wrong |
-| Median latency | 0.9 s (first request after model load: 14 s) |
+| Count | 3 / 5 |
+| Describe | 2 / 5 |
+| Read text (OCR) | 4 / 10 |
+| Find a problem | 2 / 4 |
+| Trick (hallucination test) | 1 / 4 |
+| **Total** | **12 / 28 (43%)**: 7 partial, 6 wrong, 3 hallucinations |
 
-Main findings: printed screenshots and test reports are read well; small or
-embossed text, dense counting and false-premise questions are weak spots. The
-full write-up with failure patterns is in [eval/WEEK2_RESULTS.md](eval/WEEK2_RESULTS.md).
-
-## Architecture (target)
-
-```
-                 ┌──────────────┐
-      User ───►  │    Web UI    │
-                 └──────┬───────┘
-                        │ REST
-                 ┌──────▼───────┐       ┌──────────────────┐
-                 │ API (FastAPI)│──────►│  S3 (raw files)  │
-                 └──┬────────┬──┘       └──────────────────┘
-             ingest │        │ query
-        ┌───────────▼──┐  ┌──▼─────────────────────┐
-        │ Embeddings   │  │ Retriever (top-k text   │
-        │ text + CLIP  │  │ + image chunks)         │
-        └──────┬───────┘  └──┬─────────────────────┘
-               │             │
-        ┌──────▼─────────────▼──┐   ┌─────────────────────────┐
-        │ PostgreSQL + pgvector  │   │ VLM: Ollama OR Bedrock  │
-        └────────────────────────┘   └─────────────────────────┘
-```
-
-Today the API sends the question and image straight to the VLM. Retrieval,
-storage and the Bedrock backend are added in the coming weeks behind the same
-`VLMBackend` interface (`app/llm/base.py`).
+Latency: about 12 s for a new image and about 0.5 s (median) for a follow-up question on the same image.
+Write-up with failure patterns: [eval/WEEK2_RESULTS.md](eval/WEEK2_RESULTS.md) · data: [eval/week2/](eval/week2/) · test plan: [eval/WEEK2_TEST_PLAN.md](eval/WEEK2_TEST_PLAN.md)
 
 ## Tech stack
 
-- **Now:** Python, FastAPI, Pydantic, httpx, Pillow, Ollama (Qwen2.5-VL), pytest, Docker, GitHub Actions
-- **Planned:** PostgreSQL + pgvector, CLIP / sentence-transformers, Amazon Bedrock, S3, Terraform, ECS Fargate, Syft SBOM scan in CI
+**Now:** Python, FastAPI, Pydantic, Ollama, Qwen2.5-VL 3B, Pillow, httpx, pytest, Docker, GitHub Actions
+**Planned:** pgvector, CLIP / sentence-transformers, Amazon Bedrock, S3, Terraform, ECS Fargate
 
 ## Repo structure
 
 ```
 multimodal-rag-cloud/
 ├── app/
-│   ├── main.py          # FastAPI: /ask and /health
-│   ├── config.py        # settings from environment / .env
-│   ├── image_utils.py   # validate and resize images before the VLM
-│   ├── request_log.py   # JSONL log of every request
+│   ├── main.py            # API: POST /ask, GET /health
+│   ├── config.py          # settings from env / .env
+│   ├── image_utils.py     # validate, fix rotation, resize
+│   ├── request_log.py     # JSONL request log
 │   └── llm/
-│       ├── base.py      # common backend interface
-│       └── ollama_vlm.py
-├── eval/
-│   ├── WEEK2_TEST_PLAN.md
-│   ├── WEEK2_RESULTS.md
-│   └── week2/           # public test images, questions with answer key, results CSV
+│       ├── base.py        # common VLM interface
+│       └── ollama_vlm.py  # self-hosted backend
+├── tests/                 # pytest, uses a fake model
 ├── scripts/
-│   ├── run_eval.py      # run the question set against the API
-│   └── log_report.py    # latency / error summary from the request log
-├── tests/
-├── DEVICE_SETUP.md      # Ubuntu + NVIDIA GPU test machine setup
+│   ├── run_eval.py        # run the question set against the API
+│   └── log_report.py      # latency summary + accuracy from graded CSV
+├── eval/                  # test plan, images, questions, results
+├── .github/workflows/ci.yml
 ├── Dockerfile
-├── docker-compose.yml
-└── .github/workflows/ci.yml
+├── docker-compose.yml     # API + Ollama (GPU)
+├── DEVICE_SETUP.md        # GPU device: SSH, NVIDIA driver, Ollama
+└── GIT_MANUAL.md
 ```
 
 ## Quick start
 
-With Docker (API + Ollama):
+Needs Python 3.11+ and [Ollama](https://ollama.com). An NVIDIA GPU with 6 GB or more is recommended.
 
 ```bash
 git clone https://github.com/antojoeis/multimodal-rag-cloud.git
 cd multimodal-rag-cloud
+ollama pull qwen2.5vl:3b
+
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env
+
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+# open http://localhost:8000/docs
+```
+
+With Docker instead (API + Ollama; GPU needs the NVIDIA Container Toolkit):
+
+```bash
 docker compose up --build -d
 docker compose exec ollama ollama pull qwen2.5vl:3b
 # open http://localhost:8000/docs
 ```
 
-Without Docker (Ollama already installed):
+Run tests: `pytest`
+Run the evaluation: `python scripts/run_eval.py --api http://localhost:8000`
 
-```bash
-ollama pull qwen2.5vl:3b
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env          # set VLM_MODEL=qwen2.5vl:3b for a 6 GB GPU
-uvicorn app.main:app --reload
+## Target architecture
+
 ```
-
-Run the tests: `python -m pytest -q`
-
-Re-run the evaluation: `python scripts/run_eval.py --api http://localhost:8000 --out eval/week2/results_3b.csv`
+ User ──► Web UI ──► API (FastAPI) ──► S3 (raw files)
+                       │       │
+                ingest │       │ query
+                       ▼       ▼
+          Embeddings (text + CLIP) ──► PostgreSQL + pgvector
+                                              │ top-k chunks
+                                              ▼
+                              VLM: Ollama (self-hosted) OR Bedrock (managed)
+```
 
 ## Roadmap
 
-- [x] Week 1: FastAPI + Ollama VLM MVP
-- [x] Week 2: evaluation set, automated runner and first results for the 3B model
-- [ ] Week 3: multimodal RAG: pgvector, CLIP image embeddings, PDF ingestion, citations
-- [ ] Week 4: full stack in Docker Compose (Postgres added)
-- [ ] Week 5: AWS basics: S3 storage, Bedrock backend behind the same interface
-- [ ] Week 6: Terraform: VPC, ECS Fargate, RDS Postgres, IAM, Secrets Manager
-- [ ] Week 7: CI/CD: build → push to ECR → deploy; Syft SBOM scan
-- [ ] Week 8: self-hosted vs. managed benchmark (latency, cost, accuracy) and write-up
-- Stretch: EKS, Whisper voice input, GPU instance for self-hosted mode
+- [x] **Week 1:** FastAPI + Ollama VLM MVP; GPU test device setup
+- [x] **Week 2:** Evaluation set, request logging, baseline results
+- [ ] **Week 3:** Multimodal RAG: pgvector, CLIP image embeddings, PDF ingestion, citations
+- [ ] **Week 4:** Docker Compose for the full stack (API + Ollama done; Postgres next)
+- [ ] **Week 5:** Bedrock backend behind the same interface; S3 storage
+- [ ] **Week 6:** Terraform: VPC, ECS Fargate, RDS Postgres, IAM
+- [ ] **Week 7:** GitHub Actions: test, build, push to ECR, deploy
+- [ ] **Week 8:** Benchmark Ollama vs. Bedrock (latency, cost, accuracy) and write up
 
 ## License
 
