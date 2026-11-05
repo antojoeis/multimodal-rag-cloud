@@ -13,3 +13,4 @@ venv/
 *.zip
 data/
 logs/
+eval/*.csv
