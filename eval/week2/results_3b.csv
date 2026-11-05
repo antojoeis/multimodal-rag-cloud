@@ -1,0 +1,66 @@
+﻿id,image,question_type,question,expected,answer,latency_s,error,grade,note
+1,01_motherboard_a.jpg,describe,What is in this image?,"Inside of an open desktop PC (Dell): motherboard, CPU air shroud, power supply, SATA and ribbon cables, PCIe slots","The image shows the interior of a computer case, focusing on the motherboard and various components. The motherboard is visible with its intricate circuitry and various slots and connectors. There are several heat sinks and cooling components attached to the motherboard. The image also shows a hand holding a cable, likely connecting or disconnecting a component. The case is open, revealing the internal hardware, and there are various cables and wires visible, including a blue and a red cable.",1.418,,correct,"PC interior, motherboard, heatsinks, cables; didn't name Dell"
+2,01_motherboard_a.jpg,ocr,What brand is shown on the black CPU shroud?,DELL,"The brand shown on the black CPU shroud is ""TDP.""",0.319,,wrong,said 'TDP'; DELL logo is embossed black-on-black
+3,01_motherboard_a.jpg,trick,Which graphics card is installed in the PCIe slot?,None visible; the expansion slots are empty,"The graphics card is an NVIDIA Quadro P4000, as indicated by the label on the graphics card.",0.46,,hallucination,invented an NVIDIA Quadro P4000; slots are empty
+4,03_modem_pcb.jpg,describe,What kind of device is this board from?,"A modem board (9.6k modem): DB-25 serial connector, phone jacks, transformer, row of indicator LEDs","The board in the picture is a computer motherboard. It contains various electronic components such as integrated circuits, capacitors, resistors, and connectors, which are essential for the motherboard's functionality. The presence of connectors for peripherals like a floppy drive, a parallel port, and a serial port, along with the central processing unit (CPU) and other essential components, confirms that this is a motherboard designed for a personal computer.",11.926,,wrong,"called it a PC motherboard; it's a modem (phone jacks, DB-25, LED bar)"
+5,03_modem_pcb.jpg,ocr,What is written on the large square chip in the middle?,"RC9623DP, R6642-22, ©ROCKWELL 91, MEXICO","The large square chip in the middle of the circuit board has the following text written on it:
+
+```
+RC9623DP
+R69V-2
+S32C280WELL 91
+S2CH-A2R8R7-2
+MEXICO
+```",1.027,,partial,RC9623DP and MEXICO right; middle lines garbled
+6,03_modem_pcb.jpg,ocr,What does the round black sticker say?,QC PASSED,"The round black sticker on the circuit board says ""OC PASSED.""",0.317,,partial,read 'OC PASSED' instead of 'QC PASSED'
+7,03_modem_pcb.jpg,count,How many red LEDs are on the right edge of the board?,8,There are five red LEDs on the right edge of the board.,0.327,,wrong,"said 5, actual 8"
+8,03_modem_pcb.jpg,trick,Which of the LEDs are lit?,None; the board is not powered,"The LEDs on the circuit board are not lit. The image shows the circuit board with various components, but the LEDs are not illuminated.",0.493,,correct,correctly said no LEDs lit
+9,04_pedal_pcb_closeup.jpg,describe,What components are in this close-up?,"Through-hole resistors (colour bands), a yellow film capacitor marked 473K, electrolytic capacitors","The close-up image shows several electronic components. Here are the details of the components visible in the image:
+
+1. **Resistors**: There are several resistors visible. These are cylindrical components with a series of colored bands on their surface, indicating their resistance value.
+2. **Capacitors**: There are capacitors visible. These are cylindrical components with a series of colored bands on their surface, indicating their capacitance value.
+3. **Inductors**: There are inductors visible. These are cylindrical components with a series of colored bands on their surface, indicating their inductance value.
+4. **Diodes**: There are diodes visible. These are cylindrical components with a series of colored bands on their surface, indicating their polarity and voltage rating.
+
+The specific values of the components are not clearly visible in the image, but the colored bands on each component indicate their resistance, capacitance, inductance, and polarity/voltage rating.",14.026,,partial,resistors and capacitors right; invented inductors; repeated text
+10,04_pedal_pcb_closeup.jpg,ocr,What is printed on the yellow capacitor?,473K (47 nF),"The yellow capacitor has the following markings printed on it:
+
+- ""67000""
+- ""67000""
+
+These markings typically represent the capacitance value of the capacitor in picofarads (pF).",0.77,,wrong,read '67000' instead of '473K'
+11,05_chip_marking.jpg,ocr,What is the part number on this chip?,P8259A (Intel 8259A interrupt controller),The part number on the chip is PD259A.,11.495,,partial,'PD259A' vs 'P8259A' (one character off)
+12,05_chip_marking.jpg,count,How many pins does this chip have in total?,"28 (DIP-28, 14 per side)",The chip in the picture has 16 pins.,0.263,,wrong,"said 16, actual 28"
+13,06_atx_connector.jpg,count,How many pins does this connector have?,24 (2 rows × 12): ATX 24-pin power,The connector in the image is a 24-pin ATX power connector. This type of connector is commonly used for ATX motherboards to provide power to the motherboard and other components.,11.852,,correct,24-pin ATX
+14,06_atx_connector.jpg,problem,Is the power cable properly seated in this connector?,No cable is plugged in; the connector is empty,"Yes, the power cable is properly seated in the connector. The connector is filled with the cable, indicating that it is correctly plugged in.",0.496,,hallucination,said cable properly seated; connector is empty
+15,07_scope_waveforms.jpg,describe,What signals are shown on this oscilloscope?,"Two channels: a triangle wave (top) and a square wave (bottom), same frequency","The oscilloscope display shows two signals:
+
+1. **Top Signal (Waveform):** This is a sine wave, which is a smooth, repeating waveform. The waveform is oscillating between two levels, indicating an alternating current (AC) signal. The amplitude and frequency of the sine wave can be determined by the grid lines and the scale on the oscilloscope.
+
+2. **Bottom Signal (Waveform):** This is a square wave, which is a rectangular waveform that alternates between two levels. The square wave is also oscillating between two levels, indicating an alternating current (AC) signal. The amplitude and frequency of the square wave can also be determined by the grid lines and the scale on the oscilloscope.
+
+The oscilloscope display shows the signals in a time domain, with the top signal representing the voltage or current over time and the bottom signal representing the voltage or current over time.",14.33,,partial,square wave right; called the triangle wave a sine wave
+16,07_scope_waveforms.jpg,count,How many full periods of the square wave are visible?,About 4,"The square wave in the oscilloscope trace shows a series of rectangular pulses. Each pulse represents one full period of the square wave. Since the square wave is a repeating pattern, we can count the number of full periods by observing the number of rectangular pulses in the visible portion of the trace.
+
+In this case, there are 4 full periods of the square wave visible in the trace.",1.193,,correct,4 periods
+17,08_scope_screen.jpg,ocr,What is the Vpp measurement?,528.00 mV,The Vpp measurement is 528.00 mV.,11.961,,correct,
+18,08_scope_screen.jpg,ocr,What is the fall time (tf) and the timebase?,"tf = 5.38 µs, timebase 2 µs/div","The fall time (tf) is 5.38 μs, and the timebase is 2 μs.",0.462,,correct,
+19,08_scope_screen.jpg,ocr,What brand and model is this oscilloscope?,Rohde & Schwarz / Hameg HMO3004 Series,The oscilloscope in the picture is a Rohde & Schwarz HMO3004 Series.,0.41,,correct,
+20,09_solder_tombstone.jpg,problem,Is there a soldering defect? Which component?,"Yes: R107 is ""tombstoned"" (standing on one end, lifted off a pad). R105 is also shifted off its lower pad","Yes, there is a soldering defect in the image. The component labeled ""R105"" appears to have a missing or incomplete solder joint. This can cause the component to not function properly or can lead to overheating and potential damage.",11.788,,partial,flagged R105 (shifted) but missed the R107 tombstone
+21,09_solder_tombstone.jpg,trick,Why is R106 burnt?,It isn't; R106 looks normal,"The label ""R106"" on the circuit board indicates that this is a resistor with a value of 106 ohms. The resistor is labeled as ""burnt"" because it has been damaged or burned out, likely due to an overcurrent condition or a short circuit. This could have been caused by a malfunction in the circuit or an external factor such as a power surge.",1.207,,hallucination,accepted false premise and explained why R106 'burnt'
+22,10_selftest_log.png,problem,Did the test pass? What failed?,Overall FAIL: LAN2 link failed (no carrier); USB3 port 2 warning (480 Mbps instead of 5 Gbps),"The test did not pass. The summary indicates that there was 1 failure, which is the LAN2 link test. The test summary also shows that there was 1 warning, which is the USB3 port 2 test.",11.731,,correct,LAN2 fail and USB3 port 2 warning
+23,10_selftest_log.png,ocr,What is the board serial number?,TST2611050427,The board serial number is TST2611050427.,0.359,,correct,
+24,10_selftest_log.png,trick,Why did the memory test fail?,It didn't; memory passed with 0 errors,The memory test failed because it reported 0 errors. This indicates that the memory test was successful and did not detect any errors in the memory.,0.5,,wrong,"accepted 'failed' premise, then contradicted itself (0 errors = success)"
+25,11_test_report.png,problem,"Which test is out of spec, and by how much?","5V rail: 4.61 V, below the 4.75 V minimum by 0.14 V","The test item that is out of spec is the 5V rail. The measured value is 4.61 V, which is below the specified range of 4.75 - 5.25 V. The difference is 0.14 V (4.75 V - 4.61 V).",12.425,,correct,"5V rail, 0.14 V below spec"
+26,11_test_report.png,count,How many tests passed?,5 of 6,"The Power-on Test Report for Board DUT-0427 shows that all tests passed except for the 5V rail test. Therefore, the number of tests that passed is 5.",0.656,,correct,5 passed
+27,12_modem_pcb_dark_blurry.jpg,describe,What is in this image?,"A circuit board (same modem board), rotated, dark and blurry","The image shows a circuit board, likely used in an electronic device. Here are some details about the components visible in the image:
+
+1. **Power Supply**: There is a transformer visible on the left side of the board, which is used to convert AC power to DC power.
+2. **Microcontroller**: There is a microcontroller chip in the center of the board, which is responsible for controlling the device's operations.
+3. **Capacitors and Resistors**: Various capacitors and resistors are present on the board, used for filtering, smoothing, and controlling the circuit's behavior.
+4. **Connectors**: There are several connectors at the bottom of the board, which are used to connect the board to other components or devices.
+5. **LEDs and Indicators**: There are several LEDs and indicators on the board, which are used to display status or provide visual feedback.
+6. **Jumper Wires**: Jumper wires are used to connect different parts of the board or to enable or disable certain functionalities.
+
+The board appears to be a complex piece of hardware, likely used in a control system or a device that requires precise electronic control.",14.198,,correct,circuit board with transformer; didn't mention dark/blurry
+28,12_modem_pcb_dark_blurry.jpg,ocr,What does the round black sticker say?,"QC PASSED (hard to read). ""Can't read it"" is an acceptable `partial`","The round black sticker on the circuit board says ""OC PASSED.""",0.298,,partial,same 'OC PASSED' misread despite blur
