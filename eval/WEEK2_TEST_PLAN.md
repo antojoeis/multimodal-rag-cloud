@@ -6,6 +6,8 @@ Week 3 (RAG) and the baseline for comparing Bedrock in Week 5.
 
 ## Rules
 
+- Public test images with an answer key are in `eval/week2/` (see
+  `QUESTIONS.md`). Start with those.
 - Keep work images in `data/` on the machine you test from. `data/` is in
   `.gitignore`, and **images never go to GitHub**.
 - Write findings in your own words. Describe the image ("board photo, connector
