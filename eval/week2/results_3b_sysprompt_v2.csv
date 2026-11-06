@@ -1,0 +1,444 @@
+﻿id,image,question_type,question,expected,answer,latency_s,error,grade,note
+1,01_motherboard_a.jpg,describe,What is in this image?,"Inside of an open desktop PC (Dell): motherboard, CPU air shroud, power supply, SATA and ribbon cables, PCIe slots","The image shows the interior of a computer case, focusing on the motherboard and surrounding components. The motherboard is visible with various slots and connectors, including a blue heatsink and a fan. There are several cables and wires connected to the motherboard and other components. The case is open, revealing the internal hardware.",12.021,,correct,
+2,01_motherboard_a.jpg,ocr,What brand is shown on the black CPU shroud?,DELL,The brand shown on the black CPU shroud is 'TDP'.,0.312,,wrong,'TDP' again
+3,01_motherboard_a.jpg,trick,Which graphics card is installed in the PCIe slot?,None visible; the expansion slots are empty,The graphics card is not visible in the image.,0.261,,correct,said no card visible
+4,03_modem_pcb.jpg,describe,What kind of device is this board from?,"A modem board (9.6k modem): DB-25 serial connector, phone jacks, transformer, row of indicator LEDs",The board is a computer motherboard.,11.007,,wrong,called it a motherboard
+5,03_modem_pcb.jpg,ocr,What is written on the large square chip in the middle?,"RC9623DP, R6642-22, ©ROCKWELL 91, MEXICO","The large square chip in the middle has the following text written on it:
+
+```
+RC9623DP
+R69V-2.7
+S32C80WELL 91
+S2CH. A2R8R7-2
+MEXICO
+```",0.987,,partial,RC9623DP and MEXICO right; middle lines garbled
+6,03_modem_pcb.jpg,ocr,What does the round black sticker say?,QC PASSED,"The round black sticker says ""OC PASSED.""",0.25,,partial,'OC PASSED'
+7,03_modem_pcb.jpg,count,How many red LEDs are on the right edge of the board?,8,There are six red LEDs on the right edge of the board.,0.321,,wrong,"said 6, actual 8"
+8,03_modem_pcb.jpg,trick,Which of the LEDs are lit?,None; the board is not powered,The LEDs on the circuit board are not lit.,0.254,,correct,not lit
+9,04_pedal_pcb_closeup.jpg,describe,What components are in this close-up?,"Through-hole resistors (colour bands), a yellow film capacitor marked 473K, electrolytic capacitors","The components in this close-up image include:
+
+1. A yellow electrolytic capacitor with a green label.
+2. Several resistors with different color bands.
+3. A black and white electrolytic capacitor.
+4. A black and white electrolytic capacitor with a blue label.
+5. A black and white electrolytic capacitor with a white label.
+6. A black and white electrolytic capacitor with a black label.
+7. A black and white electrolytic capacitor with a white label.
+8. A black and white electrolytic capacitor with a black label.
+9. A black and white electrolytic capacitor with a white label.
+10. A black and white electrolytic capacitor with a black label.
+11. A black and white electrolytic capacitor with a white label.
+12. A black and white electrolytic capacitor with a black label.
+13. A black and white electrolytic capacitor with a white label.
+14. A black and white electrolytic capacitor with a black label.
+15. A black and white electrolytic capacitor with a white label.
+16. A black and white electrolytic capacitor with a black label.
+17. A black and white electrolytic capacitor with a white label.
+18. A black and white electrolytic capacitor with a black label.
+19. A black and white electrolytic capacitor with a white label.
+20. A black and white electrolytic capacitor with a black label.
+21. A black and white electrolytic capacitor with a white label.
+22. A black and white electrolytic capacitor with a black label.
+23. A black and white electrolytic capacitor with a white label.
+24. A black and white electrolytic capacitor with a black label.
+25. A black and white electrolytic capacitor with a white label.
+26. A black and white electrolytic capacitor with a black label.
+27. A black and white electrolytic capacitor with a white label.
+28. A black and white electrolytic capacitor with a black label.
+29. A black and white electrolytic capacitor with a white label.
+30. A black and white electrolytic capacitor with a black label.
+31. A black and white electrolytic capacitor with a white label.
+32. A black and white electrolytic capacitor with a black label.
+33. A black and white electrolytic capacitor with a white label.
+34. A black and white electrolytic capacitor with a black label.
+35. A black and white electrolytic capacitor with a white label.
+36. A black and white electrolytic capacitor with a black label.
+37. A black and white electrolytic capacitor with a white label.
+38. A black and white electrolytic capacitor with a black label.
+39. A black and white electrolytic capacitor with a white label.
+40. A black and white electrolytic capacitor with a black label.
+41. A black and white electrolytic capacitor with a white label.
+42. A black and white electrolytic capacitor with a black label.
+43. A black and white electrolytic capacitor with a white label.
+44. A black and white electrolytic capacitor with a black label.
+45. A black and white electrolytic capacitor with a white label.
+46. A black and white electrolytic capacitor with a black label.
+47. A black and white electrolytic capacitor with a white label.
+48. A black and white electrolytic capacitor with a black label.
+49. A black and white electrolytic capacitor with a white label.
+50. A black and white electrolytic capacitor with a black label.
+51. A black and white electrolytic capacitor with a white label.
+52. A black and white electrolytic capacitor with a black label.
+53. A black and white electrolytic capacitor with a white label.
+54. A black and white electrolytic capacitor with a black label.
+55. A black and white electrolytic capacitor with a white label.
+56. A black and white electrolytic capacitor with a black label.
+57. A black and white electrolytic capacitor with a white label.
+58. A black and white electrolytic capacitor with a black label.
+59. A black and white electrolytic capacitor with a white label.
+60. A black and white electrolytic capacitor with a black label.
+61. A black and white electrolytic capacitor with a white label.
+62. A black and white electrolytic capacitor with a black label.
+63. A black and white electrolytic capacitor with a white label.
+64. A black and white electrolytic capacitor with a black label.
+65. A black and white electrolytic capacitor with a white label.
+66. A black and white electrolytic capacitor with a black label.
+67. A black and white electrolytic capacitor with a white label.
+68. A black and white electrolytic capacitor with a black label.
+69. A black and white electrolytic capacitor with a white label.
+70. A black and white electrolytic capacitor with a black label.
+71. A black and white electrolytic capacitor with a white label.
+72. A black and white electrolytic capacitor with a black label.
+73. A black and white electrolytic capacitor with a white label.
+74. A black and white electrolytic capacitor with a black label.
+75. A black and white electrolytic capacitor with a white label.
+76. A black and white electrolytic capacitor with a black label.
+77. A black and white electrolytic capacitor with a white label.
+78. A black and white electrolytic capacitor with a black label.
+79. A black and white electrolytic capacitor with a white label.
+80. A black and white electrolytic capacitor with a black label.
+81. A black and white electrolytic capacitor with a white label.
+82. A black and white electrolytic capacitor with a black label.
+83. A black and white electrolytic capacitor with a white label.
+84. A black and white electrolytic capacitor with a black label.
+85. A black and white electrolytic capacitor with a white label.
+86. A black and white electrolytic capacitor with a black label.
+87. A black and white electrolytic capacitor with a white label.
+88. A black and white electrolytic capacitor with a black label.
+89. A black and white electrolytic capacitor with a white label.
+90. A black and white electrolytic capacitor with a black label.
+91. A black and white electrolytic capacitor with a white label.
+92. A black and white electrolytic capacitor with a black label.
+93. A black and white electrolytic capacitor with a white label.
+94. A black and white electrolytic capacitor with a black label.
+95. A black and white electrolytic capacitor with a white label.
+96. A black and white electrolytic capacitor with a black label.
+97. A black and white electrolytic capacitor with a white label.
+98. A black and white electrolytic capacitor with a black label.
+99. A black and white electrolytic capacitor with a white label.
+100. A black and white electrolytic capacitor with a black label.
+101. A black and white electrolytic capacitor with a white label.
+102. A black and white electrolytic capacitor with a black label.
+103. A black and white electrolytic capacitor with a white label.
+104. A black and white electrolytic capacitor with a black label.
+105. A black and white electrolytic capacitor with a white label.
+106. A black and white electrolytic capacitor with a black label.
+107. A black and white electrolytic capacitor with a white label.
+108. A black and white electrolytic capacitor with a black label.
+109. A black and white electrolytic capacitor with a white label.
+110. A black and white electrolytic capacitor with a black label.
+111. A black and white electrolytic capacitor with a white label.
+112. A black and white electrolytic capacitor with a black label.
+113. A black and white electrolytic capacitor with a white label.
+114. A black and white electrolytic capacitor with a black label.
+115. A black and white electrolytic capacitor with a white label.
+116. A black and white electrolytic capacitor with a black label.
+117. A black and white electrolytic capacitor with a white label.
+118. A black and white electrolytic capacitor with a black label.
+119. A black and white electrolytic capacitor with a white label.
+120. A black and white electrolytic capacitor with a black label.
+121. A black and white electrolytic capacitor with a white label.
+122. A black and white electrolytic capacitor with a black label.
+123. A black and white electrolytic capacitor with a white label.
+124. A black and white electrolytic capacitor with a black label.
+125. A black and white electrolytic capacitor with a white label.
+126. A black and white electrolytic capacitor with a black label.
+127. A black and white electrolytic capacitor with a white label.
+128. A black and white electrolytic capacitor with a black label.
+129. A black and white electrolytic capacitor with a white label.
+130. A black and white electrolytic capacitor with a black label.
+131. A black and white electrolytic capacitor with a white label.
+132. A black and white electrolytic capacitor with a black label.
+133. A black and white electrolytic capacitor with a white label.
+134. A black and white electrolytic capacitor with a black label.
+135. A black and white electrolytic capacitor with a white label.
+136. A black and white electrolytic capacitor with a black label.
+137. A black and white electrolytic capacitor with a white label.
+138. A black and white electrolytic capacitor with a black label.
+139. A black and white electrolytic capacitor with a white label.
+140. A black and white electrolytic capacitor with a black label.
+141. A black and white electrolytic capacitor with a white label.
+142. A black and white electrolytic capacitor with a black label.
+143. A black and white electrolytic capacitor with a white label.
+144. A black and white electrolytic capacitor with a black label.
+145. A black and white electrolytic capacitor with a white label.
+146. A black and white electrolytic capacitor with a black label.
+147. A black and white electrolytic capacitor with a white label.
+148. A black and white electrolytic capacitor with a black label.
+149. A black and white electrolytic capacitor with a white label.
+150. A black and white electrolytic capacitor with a black label.
+151. A black and white electrolytic capacitor with a white label.
+152. A black and white electrolytic capacitor with a black label.
+153. A black and white electrolytic capacitor with a white label.
+154. A black and white electrolytic capacitor with a black label.
+155. A black and white electrolytic capacitor with a white label.
+156. A black and white electrolytic capacitor with a black label.
+157. A black and white electrolytic capacitor with a white label.
+158. A black and white electrolytic capacitor with a black label.
+159. A black and white electrolytic capacitor with a white label.
+160. A black and white electrolytic capacitor with a black label.
+161. A black and white electrolytic capacitor with a white label.
+162. A black and white electrolytic capacitor with a black label.
+163. A black and white electrolytic capacitor with a white label.
+164. A black and white electrolytic capacitor with a black label.
+165. A black and white electrolytic capacitor with a white label.
+166. A black and white electrolytic capacitor with a black label.
+167. A black and white electrolytic capacitor with a white label.
+168. A black and white electrolytic capacitor with a black label.
+169. A black and white electrolytic capacitor with a white label.
+170. A black and white electrolytic capacitor with a black label.
+171. A black and white electrolytic capacitor with a white label.
+172. A black and white electrolytic capacitor with a black label.
+173. A black and white electrolytic capacitor with a white label.
+174. A black and white electrolytic capacitor with a black label.
+175. A black and white electrolytic capacitor with a white label.
+176. A black and white electrolytic capacitor with a black label.
+177. A black and white electrolytic capacitor with a white label.
+178. A black and white electrolytic capacitor with a black label.
+179. A black and white electrolytic capacitor with a white label.
+180. A black and white electrolytic capacitor with a black label.
+181. A black and white electrolytic capacitor with a white label.
+182. A black and white electrolytic capacitor with a black label.
+183. A black and white electrolytic capacitor with a white label.
+184. A black and white electrolytic capacitor with a black label.
+185. A black and white electrolytic capacitor with a white label.
+186. A black and white electrolytic capacitor with a black label.
+187. A black and white electrolytic capacitor with a white label.
+188. A black and white electrolytic capacitor with a black label.
+189. A black and white electrolytic capacitor with a white label.
+190. A black and white electrolytic capacitor with a black label.
+191. A black and white electrolytic capacitor with a white label.
+192. A black and white electrolytic capacitor with a black label.
+193. A black and white electrolytic capacitor with a white label.
+194. A black and white electrolytic capacitor with a black label.
+195. A black and white electrolytic capacitor with a white label.
+196. A black and white electrolytic capacitor with a black label.
+197. A black and white electrolytic capacitor with a white label.
+198. A black and white electrolytic capacitor with a black label.
+199. A black and white electrolytic capacitor with a white label.
+200. A black and white electrolytic capacitor with a black label.
+201. A black and white electrolytic capacitor with a white label.
+202. A black and white electrolytic capacitor with a black label.
+203. A black and white electrolytic capacitor with a white label.
+204. A black and white electrolytic capacitor with a black label.
+205. A black and white electrolytic capacitor with a white label.
+206. A black and white electrolytic capacitor with a black label.
+207. A black and white electrolytic capacitor with a white label.
+208. A black and white electrolytic capacitor with a black label.
+209. A black and white electrolytic capacitor with a white label.
+210. A black and white electrolytic capacitor with a black label.
+211. A black and white electrolytic capacitor with a white label.
+212. A black and white electrolytic capacitor with a black label.
+213. A black and white electrolytic capacitor with a white label.
+214. A black and white electrolytic capacitor with a black label.
+215. A black and white electrolytic capacitor with a white label.
+216. A black and white electrolytic capacitor with a black label.
+217. A black and white electrolytic capacitor with a white label.
+218. A black and white electrolytic capacitor with a black label.
+219. A black and white electrolytic capacitor with a white label.
+220. A black and white electrolytic capacitor with a black label.
+221. A black and white electrolytic capacitor with a white label.
+222. A black and white electrolytic capacitor with a black label.
+223. A black and white electrolytic capacitor with a white label.
+224. A black and white electrolytic capacitor with a black label.
+225. A black and white electrolytic capacitor with a white label.
+226. A black and white electrolytic capacitor with a black label.
+227. A black and white electrolytic capacitor with a white label.
+228. A black and white electrolytic capacitor with a black label.
+229. A black and white electrolytic capacitor with a white label.
+230. A black and white electrolytic capacitor with a black label.
+231. A black and white electrolytic capacitor with a white label.
+232. A black and white electrolytic capacitor with a black label.
+233. A black and white electrolytic capacitor with a white label.
+234. A black and white electrolytic capacitor with a black label.
+235. A black and white electrolytic capacitor with a white label.
+236. A black and white electrolytic capacitor with a black label.
+237. A black and white electrolytic capacitor with a white label.
+238. A black and white electrolytic capacitor with a black label.
+239. A black and white electrolytic capacitor with a white label.
+240. A black and white electrolytic capacitor with a black label.
+241. A black and white electrolytic capacitor with a white label.
+242. A black and white electrolytic capacitor with a black label.
+243. A black and white electrolytic capacitor with a white label.
+244. A black and white electrolytic capacitor with a black label.
+245. A black and white electrolytic capacitor with a white label.
+246. A black and white electrolytic capacitor with a black label.
+247. A black and white electrolytic capacitor with a white label.
+248. A black and white electrolytic capacitor with a black label.
+249. A black and white electrolytic capacitor with a white label.
+250. A black and white electrolytic capacitor with a black label.
+251. A black and white electrolytic capacitor with a white label.
+252. A black and white electrolytic capacitor with a black label.
+253. A black and white electrolytic capacitor with a white label.
+254. A black and white electrolytic capacitor with a black label.
+255. A black and white electrolytic capacitor with a white label.
+256. A black and white electrolytic capacitor with a black label.
+257. A black and white electrolytic capacitor with a white label.
+258. A black and white electrolytic capacitor with a black label.
+259. A black and white electrolytic capacitor with a white label.
+260. A black and white electrolytic capacitor with a black label.
+261. A black and white electrolytic capacitor with a white label.
+262. A black and white electrolytic capacitor with a black label.
+263. A black and white electrolytic capacitor with a white label.
+264. A black and white electrolytic capacitor with a black label.
+265. A black and white electrolytic capacitor with a white label.
+266. A black and white electrolytic capacitor with a black label.
+267. A black and white electrolytic capacitor with a white label.
+268. A black and white electrolytic capacitor with a black label.
+269. A black and white electrolytic capacitor with a white label.
+270. A black and white electrolytic capacitor with a black label.
+271. A black and white electrolytic capacitor with a white label.
+272. A black and white electrolytic capacitor with a black label.
+273. A black and white electrolytic capacitor with a white label.
+274. A black and white electrolytic capacitor with a black label.
+275. A black and white electrolytic capacitor with a white label.
+276. A black and white electrolytic capacitor with a black label.
+277. A black and white electrolytic capacitor with a white label.
+278. A black and white electrolytic capacitor with a black label.
+279. A black and white electrolytic capacitor with a white label.
+280. A black and white electrolytic capacitor with a black label.
+281. A black and white electrolytic capacitor with a white label.
+282. A black and white electrolytic capacitor with a black label.
+283. A black and white electrolytic capacitor with a white label.
+284. A black and white electrolytic capacitor with a black label.
+285. A black and white electrolytic capacitor with a white label.
+286. A black and white electrolytic capacitor with a black label.
+287. A black and white electrolytic capacitor with a white label.
+288. A black and white electrolytic capacitor with a black label.
+289. A black and white electrolytic capacitor with a white label.
+290. A black and white electrolytic capacitor with a black label.
+291. A black and white electrolytic capacitor with a white label.
+292. A black and white electrolytic capacitor with a black label.
+293. A black and white electrolytic capacitor with a white label.
+294. A black and white electrolytic capacitor with a black label.
+295. A black and white electrolytic capacitor with a white label.
+296. A black and white electrolytic capacitor with a black label.
+297. A black and white electrolytic capacitor with a white label.
+298. A black and white electrolytic capacitor with a black label.
+299. A black and white electrolytic capacitor with a white label.
+300. A black and white electrolytic capacitor with a black label.
+301. A black and white electrolytic capacitor with a white label.
+302. A black and white electrolytic capacitor with a black label.
+303. A black and white electrolytic capacitor with a white label.
+304. A black and white electrolytic capacitor with a black label.
+305. A black and white electrolytic capacitor with a white label.
+306. A black and white electrolytic capacitor with a black label.
+307. A black and white electrolytic capacitor with a white label.
+308. A black and white electrolytic capacitor with a black label.
+309. A black and white electrolytic capacitor with a white label.
+310. A black and white electrolytic capacitor with a black label.
+311. A black and white electrolytic capacitor with a white label.
+312. A black and white electrolytic capacitor with a black label.
+313. A black and white electrolytic capacitor with a white label.
+314. A black and white electrolytic capacitor with a black label.
+315. A black and white electrolytic capacitor with a white label.
+316. A black and white electrolytic capacitor with a black label.
+317. A black and white electrolytic capacitor with a white label.
+318. A black and white electrolytic capacitor with a black label.
+319. A black and white electrolytic capacitor with a white label.
+320. A black and white electrolytic capacitor with a black label.
+321. A black and white electrolytic capacitor with a white label.
+322. A black and white electrolytic capacitor with a black label.
+323. A black and white electrolytic capacitor with a white label.
+324. A black and white electrolytic capacitor with a black label.
+325. A black and white electrolytic capacitor with a white label.
+326. A black and white electrolytic capacitor with a black label.
+327. A black and white electrolytic capacitor with a white label.
+328. A black and white electrolytic capacitor with a black label.
+329. A black and white electrolytic capacitor with a white label.
+330. A black and white electrolytic capacitor with a black label.
+331. A black and white electrolytic capacitor with a white label.
+332. A black and white electrolytic capacitor with a black label.
+333. A black and white electrolytic capacitor with a white label.
+334. A black and white electrolytic capacitor with a black label.
+335. A black and white electrolytic capacitor with a white label.
+336. A black and white electrolytic capacitor with a black label.
+337. A black and white electrolytic capacitor with a white label.
+338. A black and white electrolytic capacitor with a black label.
+339. A black and white electrolytic capacitor with a white label.
+340. A black and white electrolytic capacitor with a black label.
+341. A black and white electrolytic capacitor with a white label.
+342. A black and white electrolytic capacitor with a black label.
+343. A black and white electrolytic capacitor with a white label.
+344. A black and white electrolytic capacitor with a black label.
+345. A black and white electrolytic capacitor with a white label.
+346. A black and white electrolytic capacitor with a black label.
+347. A black and white electrolytic capacitor with a white label.
+348. A black and white electrolytic capacitor with a black label.
+349. A black and white electrolytic capacitor with a white label.
+350. A black and white electrolytic capacitor with a black label.
+351. A black and white electrolytic capacitor with a white label.
+352. A black and white electrolytic capacitor with a black label.
+353. A black and white electrolytic capacitor with a white label.
+354. A black and white electrolytic capacitor with a black label.
+355. A black and white electrolytic capacitor with a white label.
+356. A black and white electrolytic capacitor with a black label.
+357. A black and white electrolytic capacitor with a white label.
+358. A black and white electrolytic capacitor with a black label.
+359. A black and white electrolytic capacitor with a white label.
+360. A black and white electrolytic capacitor with a black label.
+361. A black and white electrolytic capacitor with a white label.
+362. A black and white electrolytic capacitor with a black label.
+363. A black and white electrolytic capacitor with a white label.
+364. A black and white electrolytic capacitor with a black label.
+365. A black and white electrolytic capacitor with a white label.
+366. A black and white electrolytic capacitor with a black label.
+367. A black and white electrolytic capacitor with a white label.
+368. A black and white electrolytic capacitor with a black label.
+369. A black and white electrolytic capacitor with a white label.
+370. A black and white electrolytic capacitor with a black label.
+371. A black and white electrolytic capacitor with a white label.
+372. A black and white electrolytic capacitor with a black label.
+373. A black and white electrolytic capacitor with a white label.
+374. A black and white electrolytic capacitor with a black label.
+375. A black and white electrolytic capacitor with a white label.
+376. A black and white electrolytic capacitor with a black label.
+377. A black and white electrolytic capacitor with a white label.
+378. A black and white electrolytic capacitor with a black label.
+379. A black and white electrolytic capacitor with a white label.
+380. A black and white electrolytic capacitor with a black label.
+381. A black and white electrolytic capacitor with a white label.
+382. A black and white electrolytic capacitor with a black label.
+383. A black and white electrolytic capacitor with a white label.
+384. A black and white electrolytic capacitor with a black label.
+385. A black and white electrolytic capacitor with a white label.
+386. A black and white electrolytic capacitor with a black label.
+387. A black and white electrolytic capacitor with a white label.
+388. A black and white electrolytic capacitor with a black label.
+389. A black and white electrolytic capacitor with a white label.
+390. A black and white electrolytic capacitor with a black label.
+391. A black and white electrolytic capacitor with a white label.
+392. A black and white electrolytic capacitor with a black label.
+393. A black and white electrolytic capacitor with a white label.
+394. A black and white electrolytic capacitor with a black label.
+395. A black and white electrolytic capacitor with a white label.
+396. A black and white electrolytic capacitor with a black label.
+397. A black and white electrolytic capacitor with a white label.
+398. A black and white electrolytic capacitor with a black label.
+399. A black and white electrolytic capacitor with a white label.
+400. A black and white electrolytic",108.055,,wrong,"repetition loop: 400+ lines, 108 s; no output cap"
+10,04_pedal_pcb_closeup.jpg,ocr,What is printed on the yellow capacitor?,473K (47 nF),"The text printed on the yellow capacitor is ""6706"".",0.435,,wrong,'6706'
+11,05_chip_marking.jpg,ocr,What is the part number on this chip?,P8259A (Intel 8259A interrupt controller),The part number on the chip is PD259A.,11.876,,partial,'PD259A' vs P8259A
+12,05_chip_marking.jpg,count,How many pins does this chip have in total?,"28 (DIP-28, 14 per side)",The chip has 16 pins in total.,0.251,,wrong,"said 16, actual 28"
+13,06_atx_connector.jpg,count,How many pins does this connector have?,24 (2 rows × 12): ATX 24-pin power,The connector has 12 pins.,11.79,,wrong,"said 12, actual 24"
+14,06_atx_connector.jpg,problem,Is the power cable properly seated in this connector?,No cable is plugged in; the connector is empty,The power cable is not properly seated in the connector.,0.259,,partial,said NOT properly seated (no longer hallucinates) but didn't notice it is empty
+15,07_scope_waveforms.jpg,describe,What signals are shown on this oscilloscope?,"Two channels: a triangle wave (top) and a square wave (bottom), same frequency","The oscilloscope displays two signals:
+
+1. The top signal shows a sine wave, which is a periodic oscillation or wave-like pattern.
+2. The bottom signal shows a square wave, which is a signal that alternates between two levels.",12.626,,partial,triangle called sine
+16,07_scope_waveforms.jpg,count,How many full periods of the square wave are visible?,About 4,The square wave has 4 full periods visible in the image.,0.297,,correct,
+17,08_scope_screen.jpg,ocr,What is the Vpp measurement?,528.00 mV,The Vpp measurement is 528.00mV.,12.136,,correct,
+18,08_scope_screen.jpg,ocr,What is the fall time (tf) and the timebase?,"tf = 5.38 µs, timebase 2 µs/div","The fall time (tf) is 5.38 μs, and the timebase is 2 μs.",0.476,,correct,
+19,08_scope_screen.jpg,ocr,What brand and model is this oscilloscope?,Rohde & Schwarz / Hameg HMO3004 Series,The oscilloscope is a Rohde & Schwarz HAMMG HMO3004 Series.,0.405,,correct,R&S HMO3004 right; 'Hameg' misspelled 'HAMMG'
+20,09_solder_tombstone.jpg,problem,Is there a soldering defect? Which component?,"Yes: R107 is ""tombstoned"" (standing on one end, lifted off a pad). R105 is also shifted off its lower pad","Yes, there is a soldering defect. The component labeled R106 appears to have a missing or incomplete solder joint.",11.562,,wrong,blamed R106 (normal); missed R107 tombstone
+21,09_solder_tombstone.jpg,trick,Why is R106 burnt?,It isn't; R106 looks normal,R106 is burnt.,0.198,,hallucination,'R106 is burnt.'
+22,10_selftest_log.png,problem,Did the test pass? What failed?,Overall FAIL: LAN2 link failed (no carrier); USB3 port 2 warning (480 Mbps instead of 5 Gbps),"The test did not pass. The test failed on the following items:
+
+1. LAN2 link - no carrier (cable?)
+2. USB3 port 2 - 480 Mbps (expected 5 Gbps)",11.845,,correct,LAN2 fail and USB3 port 2 warning
+23,10_selftest_log.png,ocr,What is the board serial number?,TST2611050427,The board serial number is TST2611050427.,0.362,,correct,
+24,10_selftest_log.png,trick,Why did the memory test fail?,It didn't; memory passed with 0 errors,The memory test did not fail. The output shows that the memory test passed with 0 errors.,0.38,,correct,rejected false premise: memory passed with 0 errors
+25,11_test_report.png,problem,"Which test is out of spec, and by how much?","5V rail: 4.61 V, below the 4.75 V minimum by 0.14 V","The 5V rail is out of spec. It should be between 4.75 - 5.25 V, but the measured value is 4.61 V, which is below the lower limit of 4.75 V.",12.322,,correct,
+26,11_test_report.png,count,How many tests passed?,5 of 6,5,0.114,,correct,
+27,12_modem_pcb_dark_blurry.jpg,describe,What is in this image?,"A circuit board (same modem board), rotated, dark and blurry","The image shows a circuit board with various electronic components. There is a chip with the label ""OC PASSED"" and a capacitor. The board also has several resistors, capacitors, and other integrated circuits. The board appears to be a type of control or signal processing board.",11.823,,correct,called the sticker a chip; didn't mention blur
+28,12_modem_pcb_dark_blurry.jpg,ocr,What does the round black sticker say?,"QC PASSED (hard to read). ""Can't read it"" is an acceptable `partial`",OC PASSED,0.144,,partial,'OC PASSED'

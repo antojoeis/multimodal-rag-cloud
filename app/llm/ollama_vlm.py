@@ -30,7 +30,7 @@ class OllamaVLM(VLMBackend):
         payload = {
             "model": self.model,
             "stream": False,
-            "options": {"num_ctx": config.OLLAMA_NUM_CTX},
+            "options": {"num_ctx": config.OLLAMA_NUM_CTX, "num_predict": config.MAX_OUTPUT_TOKENS},
             "messages": self.build_messages(question, images),
         }
         start = time.perf_counter()
