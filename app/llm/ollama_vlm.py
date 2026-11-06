@@ -9,22 +9,29 @@ from app.llm.base import VLMAnswer, VLMBackend
 
 
 class OllamaVLM(VLMBackend):
-    def __init__(self, base_url: str = config.OLLAMA_URL, model: str = config.VLM_MODEL):
+    def __init__(self, base_url: str = config.OLLAMA_URL, model: str = config.VLM_MODEL,
+                 system_prompt: str = config.SYSTEM_PROMPT):
         self.base_url = base_url.rstrip("/")
         self.model = model
+        self.system_prompt = system_prompt
+
+    def build_messages(self, question: str, images: list[bytes]) -> list[dict]:
+        messages = []
+        if self.system_prompt:
+            messages.append({"role": "system", "content": self.system_prompt})
+        messages.append({
+            "role": "user",
+            "content": question,
+            "images": [base64.b64encode(img).decode() for img in images],
+        })
+        return messages
 
     async def ask(self, question: str, images: list[bytes]) -> VLMAnswer:
         payload = {
             "model": self.model,
             "stream": False,
             "options": {"num_ctx": config.OLLAMA_NUM_CTX},
-            "messages": [
-                {
-                    "role": "user",
-                    "content": question,
-                    "images": [base64.b64encode(img).decode() for img in images],
-                }
-            ],
+            "messages": self.build_messages(question, images),
         }
         start = time.perf_counter()
         async with httpx.AsyncClient(timeout=config.REQUEST_TIMEOUT_S) as client:
