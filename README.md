@@ -4,8 +4,6 @@
 
 Ask questions about images of hardware (boards, connectors, test screens, logs) and get answers from a vision-language model (VLM). The goal is a multimodal RAG system deployed on AWS, with a measured comparison of a **self-hosted** model (Ollama on a GPU) against a **managed** one (Amazon Bedrock).
 
-> **Why this project:** I've built on-premise LLM pipelines in production (Ollama + GPU edge servers). This repo shows the same skills on the cloud, with numbers for cost, latency and quality.
-
 ## Tech stack
 
 **Now:** Python, FastAPI, Pydantic, Ollama, Qwen2.5-VL 3B, Pillow, httpx, pytest, Docker, GitHub Actions
