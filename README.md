@@ -6,34 +6,6 @@ Ask questions about images of hardware (boards, connectors, test screens, logs) 
 
 > **Why this project:** I've built on-premise LLM pipelines in production (Ollama + GPU edge servers). This repo shows the same skills on the cloud, with numbers for cost, latency and quality.
 
-## Current status
-
-| Part | Status |
-|---|---|
-| FastAPI service: upload an image and ask a question | ✅ Done |
-| Self-hosted VLM: `qwen2.5vl:3b` on Ollama, GTX 1660 6 GB | ✅ Done |
-| Image resizing (≤1024 px) and an 8K context window to prevent truncated, garbage answers | ✅ Done |
-| Request logging (JSONL) and a latency report | ✅ Done |
-| Evaluation: 11 public images, 28 questions with an answer key | ✅ Done |
-| Unit tests (pytest, 15 tests, no GPU needed) | ✅ Done |
-| Dockerfile, Docker Compose (API + Ollama), GitHub Actions CI (tests + image build) | ✅ Done |
-| RAG: embeddings, vector DB, citations | ⏳ Week 3 |
-| AWS: Bedrock, S3, Terraform, CI/CD | ⏳ Weeks 4–7 |
-
-## First results (Week 2 baseline, `qwen2.5vl:3b`)
-
-| Question type | Correct |
-|---|---|
-| Count | 3 / 5 |
-| Describe | 2 / 5 |
-| Read text (OCR) | 4 / 10 |
-| Find a problem | 2 / 4 |
-| Trick (hallucination test) | 1 / 4 |
-| **Total** | **12 / 28 (43%)**: 7 partial, 6 wrong, 3 hallucinations |
-
-Latency: about 12 s for a new image and about 0.5 s (median) for a follow-up question on the same image.
-Write-up with failure patterns: [eval/WEEK2_RESULTS.md](eval/WEEK2_RESULTS.md) · data: [eval/week2/](eval/week2/) · test plan: [eval/WEEK2_TEST_PLAN.md](eval/WEEK2_TEST_PLAN.md)
-
 ## Tech stack
 
 **Now:** Python, FastAPI, Pydantic, Ollama, Qwen2.5-VL 3B, Pillow, httpx, pytest, Docker, GitHub Actions
