@@ -1,0 +1,7 @@
+# Extra packages for the RAG parts (embeddings + vector DB).
+# Install the small CPU build of PyTorch first:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements-rag.txt
+sentence-transformers>=3.0
+psycopg[binary]>=3.2
+pgvector>=0.3
